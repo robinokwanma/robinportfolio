@@ -11555,7 +11555,19 @@ main {
 
 .robskill {
     justify-content: center;
+    align-self: center;
     text-align: center;
+}
+
+.skill-card {
+    transition: transform .2s;
+    cursor: pointer;
+    width: 85%;
+    /* You can adjust this value based on your preference. */
+}
+
+.skill-card:hover {
+    transform: scale(1.05);
 }
 
 .twimg,
@@ -11570,7 +11582,9 @@ main {
 .jsimg,
 .pythonimg,
 .djangoimg {
-    width: 30%;
+    width: 20%;
+    /* Adjust size as per your preference */
+    margin: 0 auto;
 }
 
 .robinpic {
@@ -11580,7 +11594,7 @@ main {
 .codelinks {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .codelinks>a {
@@ -11597,13 +11611,63 @@ main {
 }
 
 .projectsection {
-    font-size: 18px;
+    font-size: 16px;
+    /* margin-left: 20px; */
+    /* margin-right: 20px; */
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    /* adjust as needed */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0);
+    /* Removes the default background */
+    background-image: none;
+    /* Removes the default arrow images */
+    width: auto;
+    height: auto;
+    color: red;
+    /* You can set this to your desired color */
+}
+
+
+/* Use pseudo-elements to recreate arrows */
+
+.carousel-control-prev-icon:before,
+.carousel-control-next-icon:before {
+    content: '⬅️';
+    /* Left pointing double angle quotation mark for previous control */
+    font-size: 2rem;
+    display: inline-block;
+    color: red;
+    /* You can set this to your desired color */
+}
+
+.carousel-control-next-icon:before {
+    content: '➡️';
+    /* Right pointing double angle quotation mark for next control */
+}
+
+
+/* Optional: add a background circle or any other shape around the arrow for better visibility */
+
+
+/* .carousel-control-prev,
+.carousel-control-next {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 100%;
+} */
 
 .stacklist {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    padding: 3px;
+    margin: 3px;
+    /* justify-content: space-between; */
 }
 
 @media (max-width:575.98px) {
@@ -11611,12 +11675,23 @@ main {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        padding: 3px;
+        margin: 3px;
     }
 }
 
 .todoimg {
     height: 40vh;
     width: 100%;
+    /* border-radius: 50px; */
+}
+
+@media (max-width:575.98px) {
+    .todoimg {
+        height: 25vh;
+        width: 100%;
+        /* border-radius: 50px; */
+    }
 }
 
 @font-face {

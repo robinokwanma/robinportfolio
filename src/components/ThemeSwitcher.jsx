@@ -19,7 +19,7 @@ const ThemeSwitcher = () => {
                   onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                   aria-checked
                   >
-                  {theme === "dark" ? <h5><i class="bi bi-brightness-high text-warning">  Light Mode</i></h5> : <h5><i class="bi bi-moon text-info"> Dark Mode</i></h5>}
+                  {theme === "dark" ? <h5><i class="bi bi-brightness-high text-success">  Light Mode</i></h5> : <h5><i class="bi bi-moon text-info"> Dark Mode</i></h5>}
                 </button>
               </div>
             

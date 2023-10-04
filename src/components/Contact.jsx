@@ -1,89 +1,11 @@
-// import React from 'react'
-// import { useState } from 'react';
-// import { send } from 'emailjs-com';
-
-// const ContactForm = () => {
-
-
-    
-//     const [toSend, setToSend] = useState({
-//         from_name: '',
-//         to_name: '',
-//         message: '',
-//         reply_to: '',
-//       });
-    
-//       const onSubmit = (e) => {
-//         e.preventDefault();
-//         send(
-//           'service_beg4ok8',
-//           'template_hm8m12l',
-//           toSend,
-//           'ZhPCouDfw0H83KOf5'
-//         )
-//           .then((response) => {
-//             console.log('SUCCESS!', response.status, response.text);
-//           })
-//           .catch((err) => {
-//             console.log('FAILED...', err);
-//           });
-//       };
-    
-    
-//       const handleChange = (e) => {
-//         setToSend({ ...toSend, [e.target.name]: e.target.value });
-//       };
-    
-//   return (
-//     <div className="container mt-5">
-//       <h2 className="mb-3">React Contact Form Component Example</h2>
-//       <form onSubmit={onSubmit}>
-//       <input
-//     type='text'
-//     name='from_name'
-//     placeholder='from name'
-//     value={toSend.from_name}
-//     onChange={handleChange}
-//   />
-//   <br />
-//   <input
-//     type='text'
-//     name='to_name'
-//     placeholder='to name'
-//     value={toSend.to_name}
-//     onChange={handleChange}
-//   />
-//   <br />
-//   <input
-//     type='text'
-//     name='message'
-//     placeholder='Your message'
-//     value={toSend.message}
-//     onChange={handleChange}
-//   />
-//   <br />
-//   <input
-//     type='text'
-//     name='reply_to'
-//     placeholder='Your email'
-//     value={toSend.reply_to}
-//     onChange={handleChange}
-//   />
-//   <br />
-//   <button type='submit'>Submit</button>
-//       </form>
-//     </div>
-//   )
-// }
-// export default ContactForm
-
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Row, Col, Card } from 'react-bootstrap';
-import FollowIcons from './FollowIcons';
+import '../styling/Contact.css'
 
 export const ContactForm = () => {
   const form = useRef();
+  const [emailSent, setEmailSent] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -91,6 +13,7 @@ export const ContactForm = () => {
     emailjs.sendForm('service_beg4ok8', 'template_hm8m12l', form.current, 'ZhPCouDfw0H83KOf5')
       .then((result) => {
           console.log(result.text);
+          setEmailSent(true);  // update the emailSent state to true
       }, (error) => {
           console.log(error.text);
       });
@@ -111,15 +34,24 @@ export const ContactForm = () => {
                  <Card.Body className='contactcardbody'>
                     <form ref={form} onSubmit={sendEmail}>
                 <label>Name</label>
-                <input className="form-control" type="text" name="name" placeholder=' full name'/>
+                <input className="form-control" type="text" name="name" placeholder=' full name' required/>
                 <label>Email</label>
-                <input className="form-control" type="email" name="email" placeholder='your email please' />
+                <input className="form-control" type="email" name="email" placeholder='Johndoe@gmail.com' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
                 <label>Message</label>
-                <textarea className="form-control" name="message" placeholder='type your message here'/>
+                <textarea className="form-control" name="message" placeholder='type your message here' required/>
                 <button className="btn btn-dark submit-btn" type="submit" value="Send">Send <i className="bi bi-send-fill"></i></button>
                 </form>
-               
-                <h4><FollowIcons/></h4>
+                {emailSent && <h6 className='text-success'>Email successfully sent! <br /> Hi there, I will get back to you as soon as i can. Cheers!</h6>}
+                <div className='py-3 followbuttons'>   
+                 
+                 <Row>
+                   <Col ><a href="https://facebook.com/robinokwanma" target="_blank" rel="noreferrer"><i className="bi bi-facebook"></i></a></Col>
+                   <Col><a href="https://twitter.com/robinokwanma" target="_blank" rel="noreferrer"><i className="bi bi-twitter"></i></a></Col>
+                   <Col><a href="https://linkedin.com/in/robinokwanma" target="_blank" rel="noreferrer"><i className="bi bi-linkedin"></i></a></Col>
+                   <Col><a href="https://wa.me/2348148190856" target="_blank" rel="noreferrer"><i className="bi bi-whatsapp"></i></a></Col>
+                 </Row>
+ 
+         </div>
                     </Card.Body>
         
     </Card>
